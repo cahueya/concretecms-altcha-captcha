@@ -29,6 +29,7 @@ Option A: Use npm (recommended)
 2. Copy the files:
 
 ```cp node_modules/altcha/dist/altcha.min.js packages/altcha_captcha/assets/js/altcha.js```
+
 ```cp node_modules/altcha/dist/altcha.css     packages/altcha_captcha/assets/css/altcha.css```
 
 ✅ You may rename altcha.min.js to altcha.js to simplify asset registration.
@@ -43,8 +44,8 @@ https://github.com/AltchaOrg/altcha
 
 3. Place them into your package:
 
-- packages/altcha_captcha/assets/js/altcha.js
-- packages/altcha_captcha/assets/css/altcha.css
+- packages/altcha_captcha/js/altcha.js
+- packages/altcha_captcha/css/altcha.css
 
 The ConcreteCMS package registers these assets on load.
 
