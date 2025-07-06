@@ -30,6 +30,7 @@ class Controller extends Package
     public function on_start()
     {
         $this->registerAssets();
+        require_once __DIR__ . '/vendor/autoload.php';
     }
 
     protected function registerAssets()
