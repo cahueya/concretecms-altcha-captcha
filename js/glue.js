@@ -1,58 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const widget = document.querySelector('altcha-widget');
-    const form = widget?.closest('form');
-    const externalInput = document.getElementById('altcha-hidden');
+document.addEventListener('DOMContentLoaded', function () {
+    const widgets = document.querySelectorAll('altcha-widget');
 
-    if (!form || !widget || !externalInput) {
-        console.error('[Altcha] Widget, form, or external input not found.');
+    if (!widgets.length) {
+        console.warn('[Altcha] No altcha widgets found.');
         return;
     }
 
-    // Observe the widget until the internal input appears
-    const waitForInput = new MutationObserver(() => {
-        const internalInput = widget.querySelector('input[name="altcha"]');
+    widgets.forEach(widget => {
+        console.log('[Altcha] Widget found.');
 
-        if (internalInput) {
-            console.log('[Altcha] Internal input found:', internalInput);
+        widget.addEventListener('change', (event) => {
+            console.log('[Altcha] change event triggered', event);
 
-            // Stop observing once found
-            waitForInput.disconnect();
+            const payload = event?.target?.value;
 
-            const copyValue = () => {
-                const val = internalInput.value;
-                if (val && val.length > 10) {
-                    externalInput.value = val;
-                    console.log('[Altcha] Copied payload to external input:', val);
-                } else {
-                    console.warn('[Altcha] Payload not ready or too short:', val);
-                }
-            };
+            if (!payload) {
+                console.warn('[Altcha] No payload received on change event.');
+                return;
+            }
 
-            // Watch for internal input value changes
-            const observer = new MutationObserver(() => {
-                copyValue();
-            });
+            const hiddenInput = widget.querySelector('input[type="hidden"][name="altcha"]') || document.getElementById('altcha-hidden');
 
-            observer.observe(internalInput, {
-                attributes: true,
-                attributeFilter: ['value'],
-            });
+            if (!hiddenInput) {
+                console.warn('[Altcha] Hidden input not found.');
+                return;
+            }
 
-            // Also ensure value is copied before form submit
-            form.addEventListener('submit', (e) => {
-                copyValue();
+            hiddenInput.value = payload;
+            console.log('[Altcha] Payload copied to hidden input.');
+        });
 
-                if (!externalInput.value || externalInput.value.length < 10) {
-                    e.preventDefault();
-                    alert('Please complete the CAPTCHA before submitting.');
-                    console.warn('[Altcha] Submission blocked — no valid payload.');
-                }
-            });
-        }
-    });
-
-    waitForInput.observe(widget, {
-        childList: true,
-        subtree: true,
+        console.log('[Altcha] Widget initialized and listener attached.');
     });
 });
