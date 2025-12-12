@@ -52,14 +52,15 @@ class AltchaController extends AbstractController implements CaptchaInterface, L
             
             $session->set('altcha_challenge', json_encode($challenge));
             
+            $challengeJson = htmlspecialchars(json_encode($challenge), ENT_QUOTES, 'UTF-8');
+            
+            echo '<altcha-widget challengejson="' . $challengeJson . '" data-theme="light">';
+            echo '<input type="hidden" name="altcha" id="altcha-hidden" />';
+            echo '</altcha-widget>';
+            
             View::getInstance()->requireAsset('javascript', 'altcha');
             View::getInstance()->requireAsset('javascript', 'glue');
             View::getInstance()->requireAsset('css', 'altcha');
-            
-            $challengeJson = htmlspecialchars(json_encode($challenge), ENT_QUOTES, 'UTF-8');
-            
-            echo '<altcha-widget challengejson="' . $challengeJson . '" data-theme="light"></altcha-widget>';
-            echo '<input type="hidden" name="altcha" id="altcha-hidden" />';
             return '';
         }
     }
