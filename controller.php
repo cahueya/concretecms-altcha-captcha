@@ -10,7 +10,7 @@ use Concrete\Package\AltchaCaptcha\Src\Captcha\AltchaController;
 class Controller extends Package
 {
     protected $pkgHandle = 'altcha_captcha';
-    protected $pkgVersion = '0.9.0';
+    protected $pkgVersion = '0.9.5';
     protected $appVersionRequired = '9.0.0';
 
     protected $pkgAutoloaderRegistries = [
