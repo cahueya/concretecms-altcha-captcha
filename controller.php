@@ -11,7 +11,7 @@ use Concrete\Core\Package\Package;
 class Controller extends Package
 {
     protected $pkgHandle = 'altcha_captcha';
-    protected $pkgVersion = '1.1.3';
+    protected $pkgVersion = '1.1.4';
     protected $appVersionRequired = '9.0.0';
     protected $phpVersionRequired = '8.1';
 
