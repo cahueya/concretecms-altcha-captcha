@@ -52,7 +52,7 @@ Then install the PHP dependency inside the package directory:
 
 ```bash
 cd packages/altcha_captcha
-composer install --no-dev --optimize-autoloader
+composer install --no-dev
 ```
 
 Install or upgrade the package in Concrete CMS and select **ALTCHA CAPTCHA** as the site's CAPTCHA library.

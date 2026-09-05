@@ -33,6 +33,7 @@
         "altcha-org/altcha": "^2.1"
     },
     "config": {
+        "optimize-autoloader": true,
         "sort-packages": true
     }
 }
