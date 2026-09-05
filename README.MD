@@ -1,3 +1,5 @@
+[![Tests](https://github.com/cahueya/concretecms-altcha-captcha/actions/workflows/tests.yml/badge.svg)](https://github.com/cahueya/concretecms-altcha-captcha/actions/workflows/tests.yml)
+
 # ALTCHA CAPTCHA for Concrete CMS
 
 Version 1.1.2 provides a self-hosted, privacy-friendly proof-of-work bot check for Concrete CMS 9.
