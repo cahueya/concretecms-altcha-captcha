@@ -41,21 +41,27 @@ An off-screen honeypot field adds a no-interaction second signal against generic
 
 - Concrete CMS 9.0+
 - PHP 8.1+
-- Composer for the PHP ALTCHA library
 - a modern browser with Web Crypto and Web Worker support
 
 ## Installation
 
-Copy the directory to:
+### Concrete CMS installed with Composer
 
-`packages/altcha_captcha`
-
-Then install the PHP dependency inside the package directory:
+Require the package from the root directory of your Concrete CMS installation:
 
 ```bash
-cd packages/altcha_captcha
-composer install --no-dev
+composer require cahueya/altcha_captcha
 ```
+
+Composer places the package in `packages/altcha_captcha` and installs its PHP dependencies.
+
+### Concrete CMS installed without Composer
+
+Download the ZIP archive of the latest release from the [releases page](https://github.com/cahueya/concretecms-altcha-captcha/releases), and extract it to `packages/altcha_captcha`.
+
+The archive already contains all the required PHP dependencies: there's no need to run Composer.
+
+### Enabling the package
 
 Install or upgrade the package in Concrete CMS and select **ALTCHA CAPTCHA** as the site's CAPTCHA library.
 
@@ -63,7 +69,7 @@ The HMAC secret is generated locally with `random_bytes()` during installation/u
 
 ## Upgrading from 1.0.x
 
-Replace the package files, run Composer in the package directory and run the Concrete CMS package upgrade. The upgrade creates the short-lived rate-limit table automatically. The existing HMAC secret is retained.
+Replace the package files as described above, then run the Concrete CMS package upgrade. The upgrade creates the short-lived rate-limit table automatically. The existing HMAC secret is retained.
 
 Outstanding challenges from an older page load become invalid after the browser receives the 1.1.2 assets; clearing the Concrete CMS cache after upgrade is recommended.
 
