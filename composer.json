@@ -1,7 +1,33 @@
 {
     "name": "cahueya/altcha_captcha",
+    "description": "A concreteCMS package for the privacy-centered Altcha CAPTCHA",
     "type": "concrete5-package",
+    "keywords": [
+        "concretecms",
+        "concrete",
+        "cms",
+        "concrete5",
+        "package",
+        "addon",
+        "altcha",
+        "captcha",
+        "recaptcha",
+        "privacy",
+        "gdpr"
+    ],
+    "homepage": "https://github.com/cahueya/concretecms-altcha-captcha",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Cahueya",
+            "email": "info@cahueya.com",
+            "role": "maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/cahueya/concretecms-altcha-captcha/issues",
+        "source": "https://github.com/cahueya/concretecms-altcha-captcha"
+    },
     "require": {
         "php": ">=8.1",
         "altcha-org/altcha": "^2.1"
