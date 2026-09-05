@@ -169,7 +169,7 @@ class Controller extends Package
 
         if (!class_exists('AltchaOrg\\Altcha\\Altcha')) {
             throw new \RuntimeException(
-                t('ALTCHA PHP dependency is missing. Run "composer install --no-dev --optimize-autoloader" inside the package directory before installing or upgrading the package.')
+                t('ALTCHA PHP dependency is missing. Run "composer install --no-dev" inside the package directory before installing or upgrading the package.')
             );
         }
     }

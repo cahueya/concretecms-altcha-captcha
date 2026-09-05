@@ -1,0 +1,3 @@
+/.* export-ignore
+/*.md export-ignore
+/*.MD export-ignore

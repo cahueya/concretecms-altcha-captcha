@@ -2,8 +2,8 @@
 <schema xmlns="http://www.concrete5.org/doctrine-xml/0.5">
     <table name="AltchaCaptchaUsedChallenges">
         <field name="challengeHash" type="string" size="64">
-            <notnull/>
             <key/>
+            <notnull/>
         </field>
         <field name="expiresAt" type="integer" size="10">
             <unsigned/>
@@ -15,13 +15,13 @@
     </table>
     <table name="AltchaCaptchaRateLimits">
         <field name="rateKey" type="string" size="64">
-            <notnull/>
             <key/>
+            <notnull/>
         </field>
         <field name="requestCount" type="integer" size="10">
             <unsigned/>
-            <notnull/>
             <default value="0"/>
+            <notnull/>
         </field>
         <field name="expiresAt" type="integer" size="10">
             <unsigned/>

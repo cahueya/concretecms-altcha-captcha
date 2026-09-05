@@ -1,0 +1,102 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  php-syntax:
+    name: PHP ${{ matrix.php-version }} Syntax
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - "8.1"
+          - "8.5"
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: opcache
+          coverage: none
+          tools: none
+      -
+        name: Check syntax
+        uses: mlocati/check-php-syntax@v1
+        with:
+          fail-on-warnings: true
+
+  development-leftovers:
+    name: Check Development Leftovers
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        name: Search for debugger or xdebug_break
+        run: |
+          echo "Scanning for 'debugger' or 'xdebug_break'..."
+          matches=$(grep -Enr --include=\*.{js,php} '(^|[^a-zA-Z0-9_])(debugger|xdebug_break)\b' . || true)
+          if [[ -n "$matches" ]]; then
+            echo "Found the following matches:"
+            echo "$matches"
+            echo "::error::Development leftovers found in the codebase."
+            exit 1
+          else
+            echo "No development leftovers found."
+          fi
+
+  install:
+    name: Install on Concrete ${{ matrix.ccm-version }}
+    runs-on: ubuntu-latest
+    container: ghcr.io/concrete5-community/docker5:${{ matrix.ccm-version }}
+    needs:
+      - php-syntax
+      - development-leftovers
+    strategy:
+      matrix:
+        ccm-version:
+          - "9.0"
+          - "9.1"
+          - "9.2"
+          - "9.3"
+          - "9.4"
+          - latest
+    steps:
+      -
+        name: Install composerpkg
+        run: ccm-install composerpkg
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        name: Check composer.json
+        run: composer --ansi --no-interaction validate --strict -- "$GITHUB_WORKSPACE/composer.json"
+      -
+        name: Install composer dependencies
+        run: composerpkg --ansi --no-interaction install --prefer-dist
+      -
+        name: Start services
+        run: ccm-service start db
+      -
+        name: Core info
+        run: sudo -u www-data /app/concrete/bin/concrete5 --ansi --no-interaction c5:info
+      -
+        name: Prepare package
+        run: ln -s "$GITHUB_WORKSPACE" /app/packages/altcha_captcha
+      -
+        name: Install package
+        run: sudo -u www-data /app/concrete/bin/concrete5 --ansi --no-interaction c5:package:install altcha_captcha
