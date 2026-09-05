@@ -1,4 +1,6 @@
 {
+    "name": "cahueya/altcha_captcha",
+    "type": "concrete5-package",
     "license": "MIT",
     "require": {
         "php": ">=8.1",
