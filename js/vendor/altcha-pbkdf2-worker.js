@@ -1,6 +1,6 @@
 /*
- * ALTCHA PBKDF2 worker v3.2.1
- * Source: https://github.com/altcha-org/altcha/blob/v3.2.1/dist/workers/pbkdf2.js
+ * ALTCHA PBKDF2 worker v3.2.2
+ * Source: https://github.com/altcha-org/altcha/blob/v3.2.2/dist/workers/pbkdf2.js
  * License: MIT
  *
  * Automatically copied from the "altcha" npm package: do not edit it by hand,

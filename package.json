@@ -8,6 +8,6 @@
         "update-assets": "node bin/update-assets.js"
     },
     "devDependencies": {
-        "altcha": "3.2.1"
+        "altcha": "3.2.2"
     }
 }
