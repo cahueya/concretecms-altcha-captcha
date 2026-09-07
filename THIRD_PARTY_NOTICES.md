@@ -6,7 +6,7 @@ The PHP dependency `altcha-org/altcha` is installed with Composer and is distrib
 
 ## ALTCHA browser PBKDF2 worker
 
-`js/vendor/altcha-pbkdf2-worker.js` is vendored from ALTCHA Widget v3.2.1:
+`js/vendor/altcha-pbkdf2-worker.js` is vendored from the ALTCHA Widget, in the version listed in the `package.json` file:
 
 - Project: https://github.com/altcha-org/altcha
 - Source file: `dist/workers/pbkdf2.js`

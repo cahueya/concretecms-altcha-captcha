@@ -59,6 +59,33 @@ jobs:
             echo "No development leftovers found."
           fi
 
+  vendored-assets:
+    name: Check Vendored Assets
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        name: Install NodeJS
+        uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: npm
+      -
+        name: Install dependencies
+        run: npm ci
+      -
+        name: Update the vendored assets
+        run: npm run update-assets
+      -
+        name: Check that the vendored assets are up-to-date
+        run: |
+          if ! git diff --exit-code; then
+            echo "::error::The vendored assets don't match the altcha npm package: run 'npm run update-assets' and commit the result."
+            exit 1
+          fi
+
   install:
     name: Install on Concrete ${{ matrix.ccm-version }}
     runs-on: ubuntu-latest
@@ -66,6 +93,7 @@ jobs:
     needs:
       - php-syntax
       - development-leftovers
+      - vendored-assets
     strategy:
       matrix:
         ccm-version:

@@ -1,3 +1,6 @@
 /.* export-ignore
 /*.md export-ignore
 /*.MD export-ignore
+/bin export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore

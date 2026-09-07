@@ -87,6 +87,21 @@ For `development.test`, use one of these development-only options:
 
 Never use the insecure-origin browser exception for production.
 
+### Updating the vendored ALTCHA assets
+
+`js/vendor/altcha-pbkdf2-worker.js` and `licenses/ALTCHA-MIT.txt` are copied
+verbatim from the [altcha](https://www.npmjs.com/package/altcha) npm package and
+must not be edited by hand. To upgrade them to a newer version of the library:
+
+```bash
+npm i -E altcha@latest
+npm run update-assets
+```
+
+Then commit the resulting changes, including `package.json` and
+`package-lock.json`. A CI job checks that the committed files are exactly the
+ones shipped by the library.
+
 ## 1.1.0
 
 - migrated from legacy ALTCHA PoW v1/SHA-256 to PoW v2 PBKDF2/SHA-256;
