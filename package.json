@@ -1,0 +1,13 @@
+{
+    "name": "altcha_captcha",
+    "version": "0.0.0",
+    "description": "Development-only tooling of the ALTCHA CAPTCHA package for Concrete CMS",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "update-assets": "node bin/update-assets.js"
+    },
+    "devDependencies": {
+        "altcha": "3.2.1"
+    }
+}

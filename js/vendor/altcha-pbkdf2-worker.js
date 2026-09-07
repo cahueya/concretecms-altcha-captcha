@@ -2,6 +2,9 @@
  * ALTCHA PBKDF2 worker v3.2.1
  * Source: https://github.com/altcha-org/altcha/blob/v3.2.1/dist/workers/pbkdf2.js
  * License: MIT
+ *
+ * Automatically copied from the "altcha" npm package: do not edit it by hand,
+ * run "npm run update-assets" instead.
  */
 (function() {
   "use strict";
@@ -58,6 +61,11 @@
     buffer;
     dataView;
     encoder = new TextEncoder();
+    /**
+     * Appends the counter to the nonce buffer.
+     * In 'string' mode, encodes the counter as a UTF-8 string.
+     * In 'uint32' mode, writes the counter as a big-endian 32-bit integer.
+     */
     setCounter(n) {
       if (this.mode === "string") {
         return concatBuffers(this.nonce, this.encoder.encode(n.toString()));
